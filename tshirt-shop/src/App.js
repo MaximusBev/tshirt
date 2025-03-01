@@ -1,23 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import TshirtSelector from "./components/TshirtSelector";
+import TextInput from "./components/TextInput";
 
 function App() {
+  const [selectedTshirt, setSelectedTshirt] = useState(null);
+  const [text, setText] = useState("");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Sklep koszulek</h1>
+      <TshirtSelector onSelect={setSelectedTshirt} />
+      <TextInput onTextChange={setText} />
+      {selectedTshirt && (
+        <div style={{ marginTop: "20px" }}>
+          <h3>Podgląd wydruku</h3>
+          <div
+            style={{
+              width: "200px",
+              height: "250px",
+              backgroundColor: selectedTshirt.color,
+              position: "relative",
+              margin: "auto",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: selectedTshirt.color === "black" ? "white" : "black",
+              border: "1px solid black",
+            }}
+          >
+            {text}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
