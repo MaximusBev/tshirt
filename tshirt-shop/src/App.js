@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import TshirtSelector from "./components/TshirtSelector";
 import TextInput from "./components/TextInput";
 import TextSettings from "./components/TextSettings";
+import OrderButton from "./components/OrderButton";
 
 function App() {
   const [selectedTshirt, setSelectedTshirt] = useState(null);
@@ -12,7 +13,7 @@ function App() {
 
   return (
     <div>
-      <h1>Sklep koszulek</h1>
+      <h1>Sklep z koszulkami</h1>
       <TshirtSelector onSelect={setSelectedTshirt} />
       <TextInput onTextChange={setText} />
       <TextSettings onFontChange={setFont} onSizeChange={setSize} onColorChange={setColor} />
@@ -47,6 +48,15 @@ function App() {
           </div>
         </div>
       )}
+
+      {/* Dodajemy przycisk zamówienia */}
+      <OrderButton
+        tshirt={selectedTshirt}
+        text={text}
+        font={font}
+        size={size}
+        color={color}
+      />
     </div>
   );
 }
